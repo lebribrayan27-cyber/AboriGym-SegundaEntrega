@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="AboriGym" default="jar" basedir=".">
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+
+    <path id="classpath">
+        <fileset dir="lib"
+                 includes="*.jar"
+                 erroronmissingdir="false"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}/classes"/>
+
+        <javac
+            srcdir="${src.dir}"
+            destdir="${build.dir}/classes"
+            source="1.8"
+            target="1.8"
+            includeantruntime="false"
+            encoding="UTF-8">
+
+            <classpath refid="classpath"/>
+
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+
+        <mkdir dir="${dist.dir}"/>
+
+        <jar destfile="${dist.dir}/AboriGym.jar"
+             basedir="${build.dir}/classes">
+
+            <manifest>
+                <attribute name="Main-Class"
+                           value="vista.Principal"/>
+            </manifest>
+
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+
+        <java classname="vista.Principal"
+              fork="true"
+              failonerror="true">
+
+            <classpath>
+                <pathelement location="${dist.dir}/AboriGym.jar"/>
+                <path refid="classpath"/>
+            </classpath>
+
+        </java>
+    </target>
+
+</project>

@@ -1,0 +1,16 @@
+@startuml
+class Socio
+class Entrenador
+class ClaseGym
+class Pase
+class Asistencia
+class Conexion
+class TablaDAO
+class Principal
+Socio "1" -- "*" Pase
+Socio "1" -- "*" Asistencia
+Entrenador "1" -- "*" ClaseGym
+ClaseGym "1" -- "*" Asistencia
+Principal --> TablaDAO
+TablaDAO --> Conexion
+@enduml

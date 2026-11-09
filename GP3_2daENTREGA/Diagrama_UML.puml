@@ -1,0 +1,11 @@
+@startuml
+class Socio
+class Entrenador
+class ClaseGym
+class Pase
+class Asistencia
+Socio "1" -- "0..*" Pase : contrata
+Entrenador "1" -- "0..*" ClaseGym : imparte
+Socio "1" -- "0..*" Asistencia : registra
+ClaseGym "1" -- "0..*" Asistencia : corresponde
+@enduml
